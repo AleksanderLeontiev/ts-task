@@ -1,26 +1,26 @@
 // 1 каррирование
 const carryNumber = (a, b, c, d, e) => a + b + c + d + e;
 // eslint-disable-next-line no-shadow
-function curryingFunction(carryNumber) {
+function curryingFunction(carry) {
   return function curried(...args) {
-    if (args.length >= carryNumber.length) {
-      return carryNumber.apply(this, args);
+    if (args.length >= carry.length) {
+      return carry.apply(this, args);
     }
-    return (...args2) => {
+    return function result(...args2) {
       return curried.apply(this, args.concat(args2));
     };
   };
 }
 
-const hof = curryingFunction(carryNumber);
-console.log(hof(1, 2, 3, 4, 5)); // 15
-console.log(hof(2, 3, 4)(5, 6)); // 20
-console.log(hof(3, 4)(5, 6)(7)); // 25
-console.log(hof(4, 5)(6)(7, 8)); // 30
-console.log(hof(5)(6)(7)(8)(9)); // 35
+export const hof = curryingFunction(carryNumber);
+// console.log(hof(1, 2, 3, 4, 5)); // 15
+// console.log(hof(2, 3, 4)(5, 6)); // 20
+// console.log(hof(3, 4)(5, 6)(7)); // 25
+// console.log(hof(4, 5)(6)(7, 8)); // 30
+// console.log(hof(5)(6)(7)(8)(9)); // 35
 
 // 2 функция сумматор=========================================
-const sum = (a) => {
+export const sum = (a) => {
   let currentSum = a;
   function s(b) {
     currentSum += b;
@@ -32,13 +32,13 @@ const sum = (a) => {
   return s;
 };
 
-alert(sum(0)); // 0
-alert(sum(1)); // 1
-alert(sum(1)(2)); // 3
-alert(sum(3)(4)(5)); // 12
-const s3 = sum(3);
-alert(s3(5)); // 8
-alert(s3(6)); // 9
+// alert(sum(0)); // 0
+// alert(sum(1)); // 1
+// alert(sum(1)(2)); // 3
+// alert(sum(3)(4)(5)); // 12
+// const s3 = sum(3);
+// alert(s3(5)); // 8
+// alert(s3(6)); // 9
 
 // dz 3 параллельная обработка =========================
 class Parallel {
@@ -82,7 +82,7 @@ const createJob = (name, ms) => () =>
 })();
 
 // dz 4 spiral
-function spiral(array) {
+export function spiral(array) {
   const size = array.length;
 
   if (size === 0) return [];
@@ -105,10 +105,10 @@ const entryArray = [
   [10, 11, 12, 13, 14],
   [15, 16, 17, 18, 19],
 ];
-console.log(spiral(entryArray));
+// console.log(spiral(entryArray));
 
 // dz 5 сортировка
-function semverSort(arr) {
+export function semverSort(arr) {
   // eslint-disable-next-line no-return-assign,no-param-reassign
   return (arr = arr
     .map((a) =>
@@ -125,14 +125,14 @@ function semverSort(arr) {
         .join(".")
     ));
 }
-console.log(
-  semverSort([
-    "1.0.5",
-    "2.5.0",
-    "0.12.0",
-    "1",
-    "1.23.45",
-    "1.4.50",
-    "1.2.3.4.5.6.7",
-  ])
-);
+// console.log(
+//   semverSort([
+//     "1.0.5",
+//     "2.5.0",
+//     "0.12.0",
+//     "1",
+//     "1.23.45",
+//     "1.4.50",
+//     "1.2.3.4.5.6.7",
+//   ])
+// );
