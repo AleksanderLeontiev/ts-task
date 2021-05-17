@@ -1,5 +1,5 @@
+node_modules/
+dist/
+doc/notes.md
 .idea
-.eslintcache
-coverage
-dist
-node_modules
+coverage/
