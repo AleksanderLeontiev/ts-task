@@ -1,12 +1,17 @@
-export const spiral = (mySpiral: number[][]): number[] => {
-  const linedArray = [];
-  for (let i = 0; i <= mySpiral.length; i++) {
-    i = 0;
-    linedArray.push(mySpiral.shift());
-    mySpiral.map((row) => linedArray.push(row.pop()));
-    // eslint-disable-next-line no-param-reassign
-    mySpiral = mySpiral.map((row) => row.reverse()).reverse();
-  }
+export function spiral(array: number[][]): number[] {
+  const size = array.length;
+  if (size === 0) return [];
+  if (size === 1) return array[0];
 
-  return (linedArray as unknown) as number[];
-};
+  const top = array[0].slice(0, -1);
+
+  const right = array.slice(0, -1).map((a) => a[size]);
+  const bottom = array[size - 1].slice(1).reverse();
+  const left = array
+    .slice(1)
+    .map((a) => a[0])
+    .reverse();
+  const inner = array.slice(1, -1).map((a) => a.slice(1, -1));
+  const result: number[] = [];
+  return result.concat(top, right, bottom, left, spiral(inner));
+}

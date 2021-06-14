@@ -1,30 +1,22 @@
+/* eslint-disable quotes */
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'jest'],
   env: {
-    browser: true,
     es2021: true,
-    'jest/globals': true,
+    jest: true,
   },
-  extends: [
-    'airbnb-base',
-    'plugin:jest/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
-  ],
+  // extends: ['airbnb-base'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module',
   },
+
+  plugins: ['@typescript-eslint'],
   rules: {
-    'import/prefer-default-export': 'off',
-    'jest/valid-title': 'off',
-    'no-console': 'off',
-    'no-alert': 'off',
-    'no-restricted-globals': 'off',
-    'no-plusplus': 'off',
-    'import/no-unresolved': 'off',
-    'import/extensions': 'off',
     'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
+    'import/prefer-default-export': 'off',
   },
 };
