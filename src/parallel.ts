@@ -1,10 +1,10 @@
 export class Parallel {
-  constructor(private threadCount: number) {}
+  constructor(public threadCount: number) {
+    this.threadCount = threadCount;
+  }
 
   async jobs(...func: Function[]): Promise<number[]> {
     const result: number[] = []; // 1, 3, 2, 5, 4
-
-    // eslint-disable-next-line @typescript-eslint/ban-types
     const thread = async (prom: Function): Promise<number[]> => {
       const data = await prom();
       result.push(data);
